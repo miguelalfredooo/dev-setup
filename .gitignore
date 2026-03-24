@@ -1,0 +1,46 @@
+# Environment variables - NEVER commit these
+.env
+.env.local
+.env.production
+.env.*.local
+*.secret
+
+# Keep templates tracked, but not actual env files
+!.env.development
+!.env.staging
+!env.global.template
+!.env.*.template
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+.pnpm-debug.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-project
+.sublime-workspace
+
+# Build
+dist/
+build/
+.next/
+out/
+
+# Misc
+.cache/
+.env.local.bak
