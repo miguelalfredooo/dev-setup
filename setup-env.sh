@@ -87,7 +87,24 @@ else
     echo "✅ Added sourcing block to ~/.zshrc"
 fi
 
-# 3. Reload shell configuration
+# 3. Copy PROJECTS.md (ecosystem map) to ~/Code if it doesn't exist
+PROJECTS_SOURCE="$SCRIPT_DIR/PROJECTS.md"
+PROJECTS_DEST="$HOME/Code/PROJECTS.md"
+
+if [ -f "$PROJECTS_SOURCE" ]; then
+    if [ -f "$PROJECTS_DEST" ]; then
+        echo "📄 $PROJECTS_DEST already exists, keeping local version..."
+    else
+        echo "📝 Copying PROJECTS.md ecosystem map to ~/Code/..."
+        mkdir -p "$(dirname "$PROJECTS_DEST")"
+        cp "$PROJECTS_SOURCE" "$PROJECTS_DEST"
+        echo "✅ Created $PROJECTS_DEST"
+    fi
+else
+    echo "⚠️  PROJECTS.md not found in dev-setup (this is OK if on first clone)"
+fi
+
+# 4. Reload shell configuration
 echo "🔄 Reloading ~/.zshrc..."
 set +e
 source "$ZSHRC" 2>/dev/null
@@ -100,4 +117,5 @@ echo "📋 Next steps:"
 echo "1. Edit ~/.env.global and replace placeholder values with real keys"
 echo "2. For project-specific overrides, use .env.local (will not be committed)"
 echo "3. Verify: echo \${#ANTHROPIC_API_KEY}"
-echo "4. Run your dev server"
+echo "4. Check ~/Code/PROJECTS.md for your project ecosystem"
+echo "5. Run your dev server"
